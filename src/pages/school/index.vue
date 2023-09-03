@@ -165,7 +165,7 @@ export default {
         .post(
           this.url + "/university/list",
           {
-            name: "",
+            name: _this.searchContent,
             pageSize: _this.pagination.p,
             pageNum: _this.pagination.pageSize,
           },

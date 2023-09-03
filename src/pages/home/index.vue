@@ -50,7 +50,7 @@
     </section>
 
     <!-- 学校区域 -->
-    <section class="school_section">
+    <section class="school_section" ref="school_section">
       <div class="container">
         <div class="school">
           <div class="school_hot">
@@ -117,7 +117,7 @@
     </section>
 
     <!-- 专业区域 -->
-    <section class="school_section">
+    <section class="school_section" ref="major_section">
       <div class="container">
         <div class="school">
           <div class="school_hot">
@@ -168,7 +168,7 @@
     </section>
 
     <!-- 热门地区 -->
-    <section class="area_section">
+    <section class="area_section" ref="area_section">
       <div class="container">
         <div class="area">
           <div class="area_title">
@@ -192,7 +192,7 @@
     </section>
 
     <!-- 高考资讯区域 -->
-    <section class="volunteer_section">
+    <section class="volunteer_section" ref="volunteer_section">
       <div class="container">
         <div class="volunteer_title">
           <div class="volunteer_line"></div>
@@ -314,21 +314,26 @@
     </div>
 
     <!-- 侧边栏区域 -->
-    <aside class="aside_section">
+    <aside
+      class="aside_section"
+      @mouseover="asideFlag = true"
+      @mouseleave="asideFlag = false"
+    >
       <div class="aside" @click="toFill">
         <span class="iconfont icon-tianbao"></span>
+        <em v-if="asideFlag == true">热门学校</em>
       </div>
       <div class="aside" @click="tofindshool">
         <span class="iconfont icon-xuexiao"></span>
+        <em v-if="asideFlag == true">热门专业</em>
       </div>
       <div class="aside" @click="tofindMajor">
         <span class="iconfont icon-renshizhuanye"></span>
-      </div>
-      <div class="aside" @click="toVip">
-        <span class="iconfont icon-VIP"></span>
+        <em v-if="asideFlag == true">热门地区</em>
       </div>
       <div class="aside" @click="toMember">
         <span class="iconfont icon-gerenzhongxin"></span>
+        <em v-if="asideFlag == true">高考资讯</em>
       </div>
       <div class="aside" @click="toTop">
         <span class="iconfont icon-zhiding"></span>
@@ -417,6 +422,8 @@ export default {
         rank: "",
         subject: "",
       },
+
+      asideFlag: false,
     };
   },
   mounted() {
@@ -616,6 +623,7 @@ export default {
         item.active = false;
       }
     },
+
     // 填写高考信息
     anylyse() {
       if (this.message.year == "") {
@@ -676,32 +684,34 @@ export default {
     },
 
     toFill() {
-      this.$router.push({
-        name: "fill",
+      this.$refs.school_section.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "nearest",
       });
     },
 
     tofindshool() {
-      this.$router.push({
-        name: "findschool",
+       this.$refs.major_section.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "nearest",
       });
     },
 
     tofindMajor() {
-      this.$router.push({
-        name: "findmajor",
-      });
-    },
-
-    toVip() {
-      this.$router.push({
-        name: "vip",
+       this.$refs.area_section.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "nearest",
       });
     },
 
     toMember() {
-      this.$router.push({
-        name: "info",
+      this.$refs.volunteer_section.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "nearest",
       });
     },
 
@@ -1074,12 +1084,12 @@ export default {
             font-size: 1.2rem;
             color: #333;
             transition: all 0.3s;
-                          display: -webkit-box;
-              -webkit-box-orient: vertical;
-              -webkit-line-clamp: 3;
-              overflow: hidden;
-              /* 设置文本超出部分省略 */
-              text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
+            /* 设置文本超出部分省略 */
+            text-overflow: ellipsis;
           }
           .volunteer_item_other {
             margin-top: 2.5rem;
@@ -1226,13 +1236,17 @@ export default {
   overflow: hidden;
   .aside {
     cursor: pointer;
-    width: 2.5rem;
+    min-width: 2.5rem;
     height: 2.5rem;
+    padding: 0 0.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #fff;
     transition: all 0.3s;
+    em {
+      margin-left: 0.25rem;
+    }
     background-color: rgba(0, 0, 0, 0.9);
     &:hover {
       background-color: #427dff;
