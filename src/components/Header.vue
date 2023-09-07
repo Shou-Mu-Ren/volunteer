@@ -39,6 +39,9 @@
             <li>
               <router-link to="/vip"> VIP专区 </router-link>
             </li>
+            <li>
+              <router-link to="/consultLogin"> 咨询师登录 </router-link>
+            </li>
           </ul>
           <div class="header_bd_mobile_nav">
             <el-menu
@@ -76,6 +79,11 @@
                 <el-menu-item index="1-5">
                   <router-link to="/vip" style="color: #666">
                     VIP专区
+                  </router-link>
+                </el-menu-item>
+                 <el-menu-item index="1-5">
+                  <router-link to="/consultLogin" style="color: #666">
+                    咨询师登录
                   </router-link>
                 </el-menu-item>
               </el-submenu>

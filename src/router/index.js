@@ -67,6 +67,22 @@ const router = new VueRouter({
             },
             component: () => import('@/pages/vip/index.vue'),
         },
+        {
+            name: 'consultLogin',
+            path: '/consultLogin',
+            meta: {
+                title: '咨询师登录',
+            },
+            component: () => import('@/pages/consultLogin/index.vue'),
+        },
+        {
+            name: 'chat',
+            path: '/chat',
+            meta: {
+                title: '咨询',
+            },
+            component: () => import('@/pages/chat/index.vue'),
+        },
         { path: '*', redirect: { name: 'login' } }
     ]
 })

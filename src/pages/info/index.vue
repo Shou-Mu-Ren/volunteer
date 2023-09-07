@@ -108,6 +108,7 @@
         <div class="member_sure" v-if="changeFlag == true" @click="surechange">
           修改完成
         </div>
+        <div class="member_exit" @click="exit">退出登录</div>
       </div>
 
       <!-- 我的收藏 -->
@@ -519,6 +520,17 @@ export default {
       }
       item.active = true;
     },
+
+    exit() {
+      this.$message({
+        message: "退出成功",
+        type: "success",
+      });
+      window.localStorage.removeItem("X-token");
+      this.$router.push({
+        name:'login'
+      })
+    },
   },
 };
 </script>
@@ -731,6 +743,18 @@ export default {
       justify-content: center;
       align-items: center;
       border-radius: 0.4rem;
+    }
+    .member_exit {
+      cursor: pointer;
+      position: absolute;
+      bottom: 2rem;
+      right: 6rem;
+      color: #666;
+      font-size: 1rem;
+      font-weight: bolder;
+      &:hover{
+        color: #427dff;
+      }
     }
   }
   .star {
